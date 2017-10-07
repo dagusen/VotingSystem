@@ -3,6 +3,7 @@ from django.conf import settings
 
 User = settings.AUTH_USER_MODEL
 
+
 # Create your models here.
 
 class Department(models.Model):
@@ -46,5 +47,11 @@ class Student(models.Model):
  	def __str__(self):
  		return '%s, %s %s. - %s' % (self.LastName, self.FirstName, self.MiddleName, self.course)
 
-class Caditate(models.Model):
- 	user 				= models.ForeignKey(User)
+class Candidate(models.Model):
+ 	user 				= models.ForeignKey(User, on_delete=models.CASCADE)
+ 	student 			= models.ForeignKey(Student, on_delete=models.CASCADE, null=True, blank=True)
+ 	timestamp			= models.DateTimeField(auto_now_add=True)
+ 	updated				= models.DateTimeField(auto_now=True)
+ 	slug				= models.SlugField(null=True, blank=True)
+ 	# def __str__(self):
+ 	# 	return self.user
