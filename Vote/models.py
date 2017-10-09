@@ -12,14 +12,25 @@ class Candidate(models.Model):
  	student 			= models.ForeignKey(Student, on_delete=models.CASCADE, null=True, blank=True)
  	timestamp			= models.DateTimeField(auto_now_add=True)
  	updated				= models.DateTimeField(auto_now=True)
+ 	postion				= models.ForeignKey("Position", on_delete=models.CASCADE, related_name='Candidate', null=True, blank=True)
  	slug				= models.SlugField(null=True, blank=True)
 
- 	# def __str__(self):
- 	# 	return self.slug
+ 	def __str__(self):
+ 		return self.student
 
 class Position(models.Model):
 	position_name 		= models.CharField(max_length=200)
-	candidate			= models.ForeignKey("Candidate", on_delete=models.CASCADE, related_name='Position', null=True, blank=True)
-
 	def __str__(self):
 		return self.position_name
+
+class PartyList(models.Model):
+	partylist_name		= models.CharField(max_length=200)
+	goal				= models.CharField(max_length=200)
+	projects			= models.CharField(max_length=200)
+	timestamp			= models.DateTimeField(auto_now_add=True)
+	updated				= models.DateTimeField(auto_now=True)
+	slug				= models.SlugField(null=True, blank=True)
+
+	def __str__(self):
+		return self.partylist_name
+
