@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content%}
+
+<h4>List of Students</h4>
+
+{% for obj in object_list %}
+	<hr/>
+	<p> Name: <a href='{{ obj.get_absolute_url }}'>{{ obj.FirstName }} {{ obj.MiddleName }}. {{ obj.LastName }}</a></p>
+	<p> Course and Department : {{ obj.course }}</p>
+	<hr/>
+{% endfor %}
+{% endblock content%}
+
+
+
+

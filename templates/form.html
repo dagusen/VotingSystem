@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% if form.errors.non_field_errors %}
+{{ form.errors.non_field_errors }}
+{% endif %}
+{% block content%}
+<h1>Add Student</h1>
+<hr/>
+<form method='POST'>
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit">Save</button>
+</form>
+
+{% endblock content%}

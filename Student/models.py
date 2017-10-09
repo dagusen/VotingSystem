@@ -1,4 +1,11 @@
 from django.db import models
+from django.db.models.signals import pre_save
+
+from .utils import unique_slug_generator
+
+from django.core.urlresolvers import reverse
+
+from .validators import validate_gender
 
 from django.conf import settings
 
@@ -11,7 +18,6 @@ class Department(models.Model):
 	College_Dean		= models.CharField(max_length=120, null=True, blank=True)
 
 	def __str__(self):
-		return self.Department_name
 		return '%s - %s - %s' % (self.Department_code, self.Department_name, self.College_Dean)
 
 class Course(models.Model):
@@ -36,14 +42,13 @@ class Student(models.Model):
  	FirstName			= models.CharField(max_length=120)
  	LastName			= models.CharField(max_length=120, null=True, blank=True)
  	MiddleName			= models.CharField(max_length=120, null=True, blank=True)
- 	MiddleName			= models.CharField(max_length=120, null=True, blank=True)
  	
  	gender = (
         ('F', 'Female'),
         ('M', 'Male'),
     )
 
- 	Gender 				= models.CharField(max_length=1, choices=gender, blank=True, help_text='Select your gender')
+ 	Gender 				= models.CharField(max_length=1, choices=gender, blank=True, help_text='Select your gender', validators=[validate_gender])
  	age 				= models.IntegerField()
  	birthday 			= models.DateTimeField()
  	timestamp			= models.DateTimeField(auto_now_add=True)
@@ -54,3 +59,17 @@ class Student(models.Model):
  	
  	def __str__(self):
  		return '%s, %s %s. - %s' % (self.LastName, self.FirstName, self.MiddleName, self.course)
+
+ 	def get_absolute_url(self):
+ 		#return "/student/%s{self.slug}"
+ 		return reverse('student:detail', kwargs={'slug': self.slug})
+
+ 	@property
+ 	def title(self):
+ 		return self.FirstName
+
+def rl_pre_save_receiver(sender, instance, *arg, **kwargs):
+	if not instance.slug:
+		instance.slug = unique_slug_generator(instance)
+
+pre_save.connect(rl_pre_save_receiver, sender=Student)
