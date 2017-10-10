@@ -1,16 +1,20 @@
 from django.shortcuts import render
 
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import (
+	ListView, 
+	DetailView, 
+	CreateView, 
+	UpdateView,
+	)
 
 from .models import (
 	Student,
-	Course,
-	Department,
 	)
 
 from .forms import (
 	StudentDetailCreateForm,
 	)
+
 # Create your views here.
 
 class StudentListView(ListView):
@@ -24,20 +28,28 @@ class StudentDetailView(DetailView):
 class StudentCreateView(CreateView):
 	form_class = StudentDetailCreateForm
 	template_name = 'form.html'
-	success_url = "/student/"
+	# success_url = "/student/"
 
-class CourseListView(ListView):
-	def get_queryset(self):
-		return Course.objects.filter(user=self.request.user)
+	def form_valid(self, form):
+		instance = form.save(commit=False)
+		instance.user = self.request.user
+		return super(StudentCreateView, self).form_valid(form)
 
-class CourseDetailView(DetailView):
-	def get_queryset(self):
-		return Course.objects.filter(user=self.request.user)
+	def get_context_data(self, *args, **kwargs):
+		context = super(StudentCreateView, self).get_context_data(*args, **kwargs)
+		context['name'] = 'Add Student'
+		return context
 
-class DepartmentListView(ListView):
-	def get_queryset(self):
-		return Department.objects.filter(user=self.request.user)
+class StudentUpdateView(UpdateView):
+	form_class = StudentDetailCreateForm
+	template_name = 'Student/detail-update.html'
 
-class DepartmentDetailView(DetailView):
+	
+	def get_context_data(self, *args, **kwargs):
+		context = super(StudentUpdateView, self).get_context_data(*args, **kwargs)
+		First_name = self.get_object().First_name
+		context['First_name'] = 'Update Student: {First_name}'
+		return context
+
 	def get_queryset(self):
-		return Department.objects.filter(user=self.request.user)
+		return Student.objects.filter(user=self.request.user)

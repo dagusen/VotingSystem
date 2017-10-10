@@ -4,28 +4,26 @@ from django import forms
 from .models import Student
 
 class StudentCreateForm(forms.Form):
-	FirstName		= forms.CharField()
-	LastName		= forms.CharField(required=False)
-	MiddleName		= forms.CharField(required=False)
+	First_name		= forms.CharField()
+	Last_name		= forms.CharField(required=False)
+	Middle_name		= forms.CharField(required=False)
 	Gender			= forms.CharField(required=False)
 	age				= forms.IntegerField(required=False)
-	birthday		= forms.DateTimeField()
 
 	def clean_name(self):
-		FirstName = self.cleaned_data.get("FirstName")
-		if FirstName == "Hello":
+		First_name = self.cleaned_data.get("First_name")
+		if First_name == "Hello":
 			raise forms.ValidationError("Not a valid name")
-		return FirstName
+		return First_name
 
 class StudentDetailCreateForm(forms.ModelForm):
 	class Meta:
 		model = Student
 		fields = [
-			'FirstName',
-			'LastName',
-			'MiddleName',
+			'First_name',
+			'Last_name',
+			'Middle_name',
 			'Gender',
 			'age',
-			'birthday',
 			'course',
 		]

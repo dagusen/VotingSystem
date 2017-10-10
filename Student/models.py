@@ -39,9 +39,9 @@ class Course(models.Model):
 
 class Student(models.Model):
  	user 				= models.ForeignKey(User)
- 	FirstName			= models.CharField(max_length=120)
- 	LastName			= models.CharField(max_length=120, null=True, blank=True)
- 	MiddleName			= models.CharField(max_length=120, null=True, blank=True)
+ 	First_name			= models.CharField(max_length=120)
+ 	Last_name			= models.CharField(max_length=120, null=True, blank=True)
+ 	Middle_name			= models.CharField(max_length=120, null=True, blank=True)
  	
  	gender = (
         ('F', 'Female'),
@@ -50,7 +50,6 @@ class Student(models.Model):
 
  	Gender 				= models.CharField(max_length=1, choices=gender, blank=True, help_text='Select your gender', validators=[validate_gender])
  	age 				= models.IntegerField()
- 	birthday 			= models.DateTimeField()
  	timestamp			= models.DateTimeField(auto_now_add=True)
  	updated				= models.DateTimeField(auto_now=True)
  	slug				= models.SlugField(null=True, blank=True)
@@ -62,7 +61,7 @@ class Student(models.Model):
 
  	def get_absolute_url(self):
  		#return "/student/%s{self.slug}"
- 		return reverse('student:detail', kwargs={'slug': self.slug})
+ 		return reverse('student:edit', kwargs={'slug': self.slug})
 
  	@property
  	def title(self):

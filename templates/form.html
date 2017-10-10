@@ -5,10 +5,6 @@
 {% block content%}
 <h1>Add Student</h1>
 <hr/>
-<form method='POST'>
-	{% csrf_token %}
-	{{ form.as_p }}
-	<button type="submit">Save</button>
-</form>
+{% include 'snippets/form-snippet.html' %}
 
 {% endblock content%}
