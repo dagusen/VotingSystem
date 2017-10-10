@@ -13,6 +13,7 @@ User = settings.AUTH_USER_MODEL
 
 # Create your models here.
 class Department(models.Model):
+	user 				= models.ForeignKey(User)
 	Department_name		= models.CharField(max_length=100)
 	Department_code		= models.CharField(max_length=20, null=True)
 	College_Dean		= models.CharField(max_length=120, null=True, blank=True)
@@ -21,6 +22,7 @@ class Department(models.Model):
 		return '%s - %s - %s' % (self.Department_code, self.Department_name, self.College_Dean)
 
 class Course(models.Model):
+	user 				= models.ForeignKey(User)
 	course_name 		= models.CharField(max_length=100)
 	description 		= models.TextField(max_length=500, null=True, blank=True)
 	
@@ -31,7 +33,11 @@ class Course(models.Model):
         ('4', '4th Year'),
         ('5', '5th Year'),
     )
-	year 				= models.CharField(max_length=1, choices=Year, blank=True, help_text='Select your year', validators=[validate_gender])
+	year 				= models.CharField(max_length=1, choices=Year, blank=True, help_text='Select your year', validators=[validate_year])
+	timestamp			= models.DateTimeField(auto_now_add=True)
+	updated				= models.DateTimeField(auto_now=True)
+	slug				= models.SlugField(null=True, blank=True)
+
 	department 			= models.ForeignKey("Department", on_delete=models.SET_NULL, null=True, blank=True, related_name='Course')
 	
 	def __str__(self):

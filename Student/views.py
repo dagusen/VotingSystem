@@ -9,6 +9,7 @@ from django.views.generic import (
 
 from .models import (
 	Student,
+	Course,
 	)
 
 from .forms import (
@@ -53,3 +54,7 @@ class StudentUpdateView(UpdateView):
 
 	def get_queryset(self):
 		return Student.objects.filter(user=self.request.user)
+
+class CourseListView(ListView):
+	def get_queryset(self):
+		return Course.objects.filter(user=self.request.user)
