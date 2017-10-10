@@ -5,7 +5,7 @@ from .utils import unique_slug_generator
 
 from django.core.urlresolvers import reverse
 
-from .validators import validate_gender
+from .validators import validate_gender, validate_year
 
 from django.conf import settings
 
@@ -31,7 +31,7 @@ class Course(models.Model):
         ('4', '4th Year'),
         ('5', '5th Year'),
     )
-	year 				= models.CharField(max_length=1, choices=Year, blank=True, help_text='Select your year')
+	year 				= models.CharField(max_length=1, choices=Year, blank=True, help_text='Select your year', validators=[validate_gender])
 	department 			= models.ForeignKey("Department", on_delete=models.SET_NULL, null=True, blank=True, related_name='Course')
 	
 	def __str__(self):
@@ -57,7 +57,7 @@ class Student(models.Model):
  	course 				= models.ForeignKey("Course", on_delete=models.CASCADE, related_name='Student', null=True, blank=True)
  	
  	def __str__(self):
- 		return '%s, %s %s. - %s' % (self.LastName, self.FirstName, self.MiddleName, self.course)
+ 		return '%s, %s %s. - %s' % (self.Last_name, self.First_name, self.Middle_name, self.course)
 
  	def get_absolute_url(self):
  		#return "/student/%s{self.slug}"
