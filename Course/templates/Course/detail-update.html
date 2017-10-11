@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block head_title %}{{ object.course_name }} | {{ block.super }}{% endblock %}
+{% block content%}
+
+<h4>Course Detail</h4>{% csrf_token %}
+	<hr/>
+	<h6> Name: {{ course.course_name }}</h6>
+	<p> Description: {{ course.description }}</p>
+	<hr/>
+<h3>Make Changes</h3>
+	{% include 'snippets/form-snippet.html' with form=form %}
+{% endblock content%}

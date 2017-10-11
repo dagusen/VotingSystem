@@ -26,4 +26,5 @@ class StudentDetailCreateForm(forms.ModelForm):
 			'Gender',
 			'age',
 			'course',
+			'year',
 		]
