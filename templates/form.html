@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% block head_title %}Edit | {{ block.super }}{% endblock %}
 {% if form.errors.non_field_errors %}
 {{ form.errors.non_field_errors }}
 {% endif %}

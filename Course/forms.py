@@ -6,7 +6,6 @@ from .models import Course
 class CourseCreateForm(forms.Form):
 	course_name		= forms.CharField()
 	description		= forms.CharField()
-	year			= forms.CharField()
 	
 
 	def clean_name(self):
@@ -21,4 +20,5 @@ class CourseDetailCreateForm(forms.ModelForm):
 		fields = [
 			'course_name',
 			'description',
+			'department',
 		]

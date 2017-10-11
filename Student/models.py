@@ -13,18 +13,6 @@ from Course.models import Course
 
 User = settings.AUTH_USER_MODEL
 
-# Create your models here.
-# class Department(models.Model):
-# 	user 				= models.ForeignKey(User)
-# 	Department_name		= models.CharField(max_length=100)
-# 	Department_code		= models.CharField(max_length=20, null=True)
-# 	College_Dean		= models.CharField(max_length=120, null=True, blank=True)
-
-# 	def __str__(self):
-# 		return '%s - %s - %s' % (self.Department_code, self.Department_name, self.College_Dean)
-
-
-
 Year = (
     	('1', '1st year'),
     	('2', '2nd year'),
@@ -51,10 +39,8 @@ class Student(models.Model):
  	updated				= models.DateTimeField(auto_now=True)
  	slug				= models.SlugField(null=True, blank=True)
 
- 	#course = models.ForeignKey(User , verbose_name=_('Course'), blank=True, null=True)
  	course 				= models.ForeignKey('Course.Course', on_delete=models.CASCADE, related_name='Student', null=True, blank=True) 
- 	#course 				= models.ForeignKey("Course", on_delete=models.CASCADE, related_name='Student', null=True, blank=True)
- 	
+
  	def __str__(self):
  		return '%s, %s %s. - %s' % (self.Last_name, self.First_name, self.Middle_name, self.course)
 

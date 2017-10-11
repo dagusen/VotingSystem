@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block head_title %}List of Departments | {{ block.super }}{% endblock head_title %}
+{% block content%}
+
+<h4>List of Departments<small><a href='{% url "department:create" %}'> Add New</a></small></h4>
+
+{% for obj in object_list %}
+	<hr/>
+	<h4>{{ obj.department_code }}</h4>
+	<p> Department name: <a href='{{ obj.get_absolute_url }}'>{{ obj.department_name }}</a></p>
+	<p> College Dean: {{ obj.college_dean }}</p>
+	<hr/>
+{% endfor %}
+
+{% endblock content%}

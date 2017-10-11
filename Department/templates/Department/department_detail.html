@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block head_title %}Department detail | {{ block.super }}{% endblock head_title %}
+{% block content%}
+
+<h4>Department Detail</h4>
+	<hr/>
+	<h3>{{ department.department_code }}</h3> 
+	<p>{{ department.department_name }}</p>
+	<p>{{ department.college_dean }}</p>
+	<hr/>
+{% endblock content%}

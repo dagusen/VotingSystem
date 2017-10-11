@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block head_title %}{{ object.department_code }} | {{ block.super }}{% endblock %}
+{% block content%}
+
+<h4>Department Detail</h4>{% csrf_token %}
+	<hr/>
+	<h6> {{ department.department_code }}</h6>
+	<p>{{ department.department_name }}</p>
+	<p>{{ department.college_dean }}</p>
+
+<h3>Make Changes</h3>
+	{% include 'snippets/form-snippet.html' with form=form %}
+{% endblock content%}

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block head_title %}List of all Students | {{ block.super }}{% endblock head_title %}
+{% block head_title %}List of Students | {{ block.super }}{% endblock head_title %}
 {% block content%}
 
 <h4>List of Students<small><a href='{% url "student:create" %}'> Add New</a></small></h4>
@@ -7,7 +7,7 @@
 {% for obj in object_list %}
 	<hr/>
 	<p> Name: <a href='{{ obj.get_absolute_url }}'>{{ obj.First_name }} {{ obj.Middle_name }}. {{ obj.Last_name }}</a></p>
-	<p> Course and Department : {{ obj.course }}</p>
+	<p> Course and Department : {{ obj.course }} - {{ obj.course.department }}</p>
 	{% empty %}
 	<li><a href='{% url "student:create" %}'>Add One</a></li>
 	<hr/>
