@@ -9,6 +9,10 @@ from django.conf import settings
 
 from Student.models import Student
 
+from Position.models import Position
+
+from PartyList.models import PartyList
+
 User = settings.AUTH_USER_MODEL
 # Create your models here.
 
@@ -20,7 +24,10 @@ class Candidate(models.Model):
 	slug				= models.SlugField(null=True, blank=True)
 
 	student				= models.ForeignKey('Student.Student', on_delete=models.CASCADE, related_name='Candidate', null=True, blank=True) 
+	party_list			= models.ForeignKey('PartyList.PartyList', on_delete=models.CASCADE, related_name='Candidate', null='True', blank=True)
+	position 			= models.ForeignKey('Position.Position', on_delete=models.CASCADE, related_name='Candidate', null='True', blank=True)
 
+	
 	# def __str__(self):
 	# 	return self.user
 
