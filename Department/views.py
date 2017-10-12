@@ -44,7 +44,7 @@ class DepartmentUpdateView(UpdateView):
 	
 	def get_context_data(self, *args, **kwargs):
 		context = super(DepartmentUpdateView, self).get_context_data(*args, **kwargs)
-		course_name = self.get_object().course_name
+		department_name = self.get_object().department_name
 		context['department_name'] = 'Update Department: {department_name}'
 		return context
 

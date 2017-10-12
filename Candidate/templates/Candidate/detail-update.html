@@ -4,9 +4,9 @@
 
 <h4>Candidate Detail</h4>{% csrf_token %}
 	<hr/>
-	<h6> Name: {{ candadidate.student }}</h6>
-	<p> Position: {{ candadidate.position }}</p>
-	<p> Position: {{ candadidate.party_list }}</p>
+	<h6> Name: {{ object.student }}</h6>
+	<p> Position: {{ object.position }}</p>
+	<p> Party List: {{ object.party_list }}</p>
 	<hr/>
 <h3>Make Changes</h3>
 	{% include 'snippets/form-snippet.html' with form=form %}
