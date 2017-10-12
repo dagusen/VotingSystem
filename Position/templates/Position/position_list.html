@@ -2,11 +2,14 @@
 {% block head_title %}List of Positions | {{ block.super }}{% endblock head_title %}
 {% block content%}
 
-<h4>List of Positions<small></small></h4>
+<h4>List of Positions<small><a href='{% url "position:create" %}'> Add New</a></small></h4>
 
 {% for obj in object_list %}
 	<hr/>
 	<h5><a href='{{ obj.get_absolute_url }}'>{{ obj.position_name }}</a></h5>
+	{% empty %}
+	<li><a href='{% url "position:create" %}'>Add One</a></li>
+	<hr/>
 {% endfor %}
 
 {% endblock content%}

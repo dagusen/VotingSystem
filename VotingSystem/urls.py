@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^department/', include('Department.urls', namespace='department')),
     url(r'^candidate/', include('Candidate.urls', namespace='candidate')),
     url(r'^position/', include('Position.urls', namespace='position')),
+    url(r'^partylist/', include('PartyList.urls', namespace='partylist')),
 ]

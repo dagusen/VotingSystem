@@ -3,14 +3,14 @@ from django.conf.urls import url
 from .views import (
     PositionListView,
     PositionDetailView,
-    # DepartmentCreateView,
-    # DepartmentUpdateView,
+    PositionCreateView,
+    PositionUpdateView,
 )
 
 urlpatterns = [
     url(r'^$', PositionListView.as_view(), name='list'),
-    # url(r'^create/$', DepartmentCreateView.as_view(), name='create'),
+    url(r'^create/$', PositionCreateView.as_view(), name='create'),
     # # slug
-    url(r'^(?P<slug>[\w-]+)/$', PositionDetailView.as_view(), name='detail'),
-    # url(r'^(?P<slug>[\w-]+)/$', DepartmentUpdateView.as_view(), name='edit'),
+    #url(r'^(?P<slug>[\w-]+)/$', PositionDetailView.as_view(), name='detail'),
+    url(r'^(?P<slug>[\w-]+)/$', PositionUpdateView.as_view(), name='edit'),
 ]

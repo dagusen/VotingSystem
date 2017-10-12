@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block head_title %}List of Party List | {{ block.super }}{% endblock head_title %}
+{% block content%}
+
+<h4>List of Party List<small><a href='{% url "partylist:create" %}'> Add New</a></small></h4>
+
+{% for obj in object_list %}
+	<hr/>
+	<p><a href='{{ obj.get_absolute_url }}'>{{ obj.partylist_name }}</a></p>
+	<hr/>
+	{% empty %}
+	<li><a href='{% url "partylist:create" %}'>Add One</a></li>
+	<hr/>
+{% endfor %}
+{% endblock content%}

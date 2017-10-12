@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block head_title %}{{ object.partylist_name }} | {{ block.super }}{% endblock %}
+{% block content%}
+
+<h4>Party List Detail</h4>{% csrf_token %}
+	<hr/>
+	<h4>{{ partylist.partylist_name }}</h4>
+	<hr/>
+<h3>Make Changes</h3>
+	{% include 'snippets/form-snippet.html' with form=form %}
+{% endblock content%}

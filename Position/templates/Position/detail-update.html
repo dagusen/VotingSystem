@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block head_title %}{{ object.positon_name }} | {{ block.super }}{% endblock %}
+{% block content%}
+
+<h4>Position Detail</h4>{% csrf_token %}
+	<hr/>
+	<h6> {{ position.position_name }}</h6>
+	<hr/>
+<h3>Make Changes</h3>
+	{% include 'snippets/form-snippet.html' with form=form %}
+{% endblock content%}
