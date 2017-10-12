@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.signals import pre_save
 
-from .utils import unique_slug_generator
+from Course.utils import unique_slug_generator
 
 from django.core.urlresolvers import reverse
 
@@ -21,8 +21,8 @@ class Position(models.Model):
 	def __str__(self):
 		return self.position_name
 
-	# def get_absolute_url(self):
-	# 	return reverse('department:edit', kwargs={'slug': self.slug})
+	def get_absolute_url(self):
+	  	return reverse('position:detail', kwargs={'slug': self.slug})
 
 	@property
 	def title(self):

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block head_title %}Position detail | {{ block.super }}{% endblock head_title %}
+{% block content%}
+
+<h4>Positions Detail</h4>
+	<hr/>
+	<h3>{{ position.position_name }}</h3>
+	<p>Candidate :{{ position.candidate.student }} {{ position.candidate.student }}</p>
+	<hr/>
+{% endblock content%}

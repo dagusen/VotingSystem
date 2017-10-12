@@ -1,9 +1,20 @@
 from django.shortcuts import render
 
+from django.views.generic import (
+	ListView, 
+	DetailView, 
+	CreateView, 
+	UpdateView,
+	)
+
 from .models import Position
+
 # Create your views here.
 
-class PostionListView(ListView):
-	template_name = 'Postion/position_list.html'
+class PositionListView(ListView):
 	def get_queryset(self):
-		return Postion.objects.filter(user=self.request.user)
+		return Position.objects.filter(user=self.request.user)
+
+class PositionDetailView(DetailView):
+	def get_queryset(self):
+		return Position.objects.filter(user=self.request.user)

@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^course/', include('Course.urls', namespace='course')),
     url(r'^department/', include('Department.urls', namespace='department')),
     url(r'^candidate/', include('Candidate.urls', namespace='candidate')),
+    url(r'^position/', include('Position.urls', namespace='position')),
 ]
