@@ -5,6 +5,8 @@ from .utils import unique_slug_generator
 
 from django.core.urlresolvers import reverse
 
+from Position.models import Position
+
 from django.conf import settings
 
 User = settings.AUTH_USER_MODEL
@@ -18,7 +20,9 @@ class PartyList(models.Model):
 	projects			= models.CharField(max_length=150, null=True, blank=True)
 	timestamp			= models.DateTimeField(auto_now_add=True)
 	updated				= models.DateTimeField(auto_now=True)
-	slug				= models.SlugField(null=True, blank=True)	
+	slug				= models.SlugField(null=True, blank=True)
+
+	position			= models.ForeignKey('Position.Position', on_delete=models.CASCADE, related_name='PartyList', null=True, blank=True)	
 	
 	def __str__(self):
 		return self.partylist_name
