@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block head_title %}Candidate detail | {{ block.super }}{% endblock head_title %}
+{% block content%}
+
+<h4>Candidate Detail</h4>
+	<hr/>
+	<h3>{{ candidate.student }}</h3> 
+	<p>{{ candidate.position }}</p>
+	<p>{{ candidate.party_list }}</p>
+	<hr/>
+{% endblock content%}

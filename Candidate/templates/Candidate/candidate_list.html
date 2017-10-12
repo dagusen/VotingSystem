@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block head_title %}List of Candidate | {{ block.super }}{% endblock head_title %}
+{% block content%}
+
+<h4>List of Candidates<small><a href='{% url "candidate:create" %}'> Add New</a></small></h4>
+
+{% for obj in object_list %}
+	<hr/>
+	<p> Candidate :<a href='{{ obj.get_absolute_url }}'>{{ obj.student }}</a></p>
+	<p> Position: {{ obj.position }}</p>
+	<p> Party list : {{ obj.party_list }}</p>
+	{% empty %}
+	<li><a href='{% url "candidate:create" %}'>Add One</a></li>
+	<hr/>
+{% endfor %}
+{% endblock content%}

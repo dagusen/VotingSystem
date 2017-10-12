@@ -9,6 +9,8 @@
 	<h4>{{ obj.department_code }}</h4>
 	<p> Department name: <a href='{{ obj.get_absolute_url }}'>{{ obj.department_name }}</a></p>
 	<p> College Dean: {{ obj.college_dean }}</p>
+	{% empty %}
+	<li><a href='{% url "department:create" %}'>Add One</a></li>
 	<hr/>
 {% endfor %}
 

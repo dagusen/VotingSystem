@@ -28,11 +28,11 @@ class Candidate(models.Model):
 	position 			= models.ForeignKey('Position.Position', on_delete=models.CASCADE, related_name='Candidate', null='True', blank=True)
 
 	
-	# def __str__(self):
-	# 	return self.user
+	def get_data(self):
+	 	return self.student
 
-	# def get_absolute_url(self):
-	# 	return reverse('department:edit', kwargs={'slug': self.slug})
+	def get_absolute_url(self):
+	 	return reverse('candidate:edit', kwargs={'slug': self.slug})
 
 	@property
 	def title(self):

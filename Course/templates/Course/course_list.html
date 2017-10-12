@@ -9,5 +9,8 @@
 	<p> Course name: <a href='{{ obj.get_absolute_url }}'>{{ obj.course_name }}</a></p>
 	<p> Description: {{ obj.description }} {{ obj.First_name}}</p>
 	<hr/>
+	{% empty %}
+	<li><a href='{% url "course:create" %}'>Add One</a></li>
+	<hr/>
 {% endfor %}
 {% endblock content%}
