@@ -7,21 +7,32 @@ from django.views.generic import (
 	UpdateView,
 	)
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import Position
 
 from .forms import PositionDetailCreateForm
 
+from Candidate.models import Candidate
+
 # Create your views here.
 
-class PositionListView(ListView):
+class PositionListView(LoginRequiredMixin, ListView):
 	def get_queryset(self):
 		return Position.objects.filter(user=self.request.user)
 
-class PositionDetailView(DetailView):
+class PositionDetailView(LoginRequiredMixin, DetailView):
 	def get_queryset(self):
 		return Position.objects.filter(user=self.request.user)
 
-class PositionCreateView(CreateView):
+	def get_context_data(self, *args, **kwargs):
+		candidate = Candidate.objects.all()
+		context = {
+			'candidate': candidate,
+		}
+		return render(request,"Position/detail-update",context)
+
+class PositionCreateView(LoginRequiredMixin, CreateView):
 	form_class = PositionDetailCreateForm
 	template_name = 'form.html'
 	# success_url = "/student/"
@@ -36,7 +47,7 @@ class PositionCreateView(CreateView):
 		context['position_name'] = 'Add Position'
 		return context
 
-class PositionUpdateView(UpdateView):
+class PositionUpdateView(LoginRequiredMixin, UpdateView):
 	form_class = PositionDetailCreateForm
 	template_name = 'Position/detail-update.html'
 

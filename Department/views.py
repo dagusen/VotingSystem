@@ -12,17 +12,19 @@ from .models import Department
 
 from .forms import DepartmentDetailCreateForm
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # Create your views here.
 
-class DepartmentListView(ListView):
+class DepartmentListView(LoginRequiredMixin, ListView):
 	def get_queryset(self):
 		return Department.objects.filter(user=self.request.user)
 
-class DepartmentDetailView(DetailView):
+class DepartmentDetailView(LoginRequiredMixin, DetailView):
 	def get_queryset(self):
 		return Department.objects.filter(user=self.request.user)
 
-class DepartmentCreateView(CreateView):
+class DepartmentCreateView(LoginRequiredMixin, CreateView):
 	form_class = DepartmentDetailCreateForm
 	template_name = 'form.html'
 	# success_url = "/student/"
@@ -37,7 +39,7 @@ class DepartmentCreateView(CreateView):
 		context['department_name'] = 'Add Department'
 		return context
 
-class DepartmentUpdateView(UpdateView):
+class DepartmentUpdateView(LoginRequiredMixin, UpdateView):
 	form_class = DepartmentDetailCreateForm
 	template_name = 'Department/detail-update.html'
 

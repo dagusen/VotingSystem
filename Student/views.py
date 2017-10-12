@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.views.generic import (
 	ListView, 
 	DetailView, 
@@ -18,15 +20,15 @@ from .forms import (
 
 # Create your views here.
 
-class StudentListView(ListView):
+class StudentListView(LoginRequiredMixin, ListView):
 	def get_queryset(self):
 		return Student.objects.filter(user=self.request.user)
 
-class StudentDetailView(DetailView):
+class StudentDetailView(LoginRequiredMixin, DetailView):
 	def get_queryset(self):
 		return Student.objects.filter(user=self.request.user)
 
-class StudentCreateView(CreateView):
+class StudentCreateView(LoginRequiredMixin, CreateView):
 	form_class = StudentDetailCreateForm
 	template_name = 'form.html'
 	# success_url = "/student/"
@@ -41,7 +43,7 @@ class StudentCreateView(CreateView):
 		context['name'] = 'Add Student'
 		return context
 
-class StudentUpdateView(UpdateView):
+class StudentUpdateView(LoginRequiredMixin, UpdateView):
 	form_class = StudentDetailCreateForm
 	template_name = 'Student/detail-update.html'
 

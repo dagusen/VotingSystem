@@ -11,6 +11,9 @@
     {% include 'snippets/nav.html'%}
   </head>
   <body>
+    {% if user.is_authenticated %}
+    <p><a href="{% url 'logout' %}">logout</p>
+    {% endif %}
     <div class="container">
       {% csrf_token %}
       {% block content%}{% endblock content %}

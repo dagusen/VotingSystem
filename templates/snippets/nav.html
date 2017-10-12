@@ -1,8 +1,10 @@
 <div class="container">
+	{% if request.user.is_authenticated %}
 	<a href='{% url "student:list" %}'>Students</a>
 	<a href='{% url "course:list" %}'>Courses</a>
 	<a href='{% url "department:list" %}'>Departments</a>
 	<a href='{% url "candidate:list" %}'>Candidates</a>
 	<a href='{% url "position:list" %}'>Positions</a>
 	<a href='{% url "partylist:list" %}'>Party Lists</a>
+	{% endif %}
 </div>

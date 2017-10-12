@@ -9,16 +9,17 @@ from django.views.generic import (
 
 from .models import Candidate
 from .forms import CandidateDetailCreateForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class CandidateListView(ListView):
+class CandidateListView(LoginRequiredMixin, ListView):
 	def get_queryset(self):
 		return Candidate.objects.filter(user=self.request.user)
 
-class CandidateDetailView(DetailView):
+class CandidateDetailView(LoginRequiredMixin, DetailView):
 	def get_queryset(self):
 		return Candidate.objects.filter(user=self.request.user)
 
-class CandidateCreateView(CreateView):
+class CandidateCreateView(LoginRequiredMixin, CreateView):
 	form_class = CandidateDetailCreateForm
 	template_name = 'form.html'
 	# success_url = "/student/"
@@ -33,7 +34,7 @@ class CandidateCreateView(CreateView):
 		context['student'] = 'Add Candidate'
 		return context
 
-class CandidateUpdateView(UpdateView):
+class CandidateUpdateView(LoginRequiredMixin, UpdateView):
 	form_class = CandidateDetailCreateForm
 	template_name = 'Candidate/detail-update.html'
 

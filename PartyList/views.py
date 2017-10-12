@@ -8,17 +8,19 @@ from django.views.generic import (
 	)
 from .forms import PartyListDetailCreateForm
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import PartyList
 
-class PartyListListView(ListView):
+class PartyListListView(LoginRequiredMixin, ListView):
 	def get_queryset(self):
 		return PartyList.objects.filter(user=self.request.user)
 
-class PartyListDetailView(DetailView):
+class PartyListDetailView(LoginRequiredMixin, DetailView):
 	def get_queryset(self):
 		return PartyList.objects.filter(user=self.request.user)
 
-class PartyListCreateView(CreateView):
+class PartyListCreateView(LoginRequiredMixin, CreateView):
 	form_class = PartyListDetailCreateForm
 	template_name = 'form.html'
 	# success_url = "/student/"
@@ -33,7 +35,7 @@ class PartyListCreateView(CreateView):
 		context['partylist_name'] = 'Add Party List'
 		return context
 
-class PartyListUpdateView(UpdateView):
+class PartyListUpdateView(LoginRequiredMixin, UpdateView):
 	form_class = PartyListDetailCreateForm
 	template_name = 'PartyList/detail-update.html'
 

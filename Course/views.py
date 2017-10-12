@@ -11,19 +11,21 @@ from .models import (
 	Course,
 	)
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .forms import CourseDetailCreateForm
 
 # Create your views here.
 
-class CourseListView(ListView):
+class CourseListView(LoginRequiredMixin, ListView):
 	def get_queryset(self):
 		return Course.objects.filter(user=self.request.user)
 
-class CourseDetailView(DetailView):
+class CourseDetailView(LoginRequiredMixin, DetailView):
 	def get_queryset(self):
 		return Course.objects.filter(user=self.request.user)
 
-class CourseCreateView(CreateView):
+class CourseCreateView(LoginRequiredMixin, CreateView):
 	form_class = CourseDetailCreateForm
 	template_name = 'form.html'
 	# success_url = "/student/"
@@ -38,7 +40,7 @@ class CourseCreateView(CreateView):
 		context['course_name'] = 'Add Course'
 		return context
 
-class CourseUpdateView(UpdateView):
+class CourseUpdateView(LoginRequiredMixin, UpdateView):
 	form_class = CourseDetailCreateForm
 	template_name = 'Course/detail-update.html'
 
