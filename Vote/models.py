@@ -14,6 +14,6 @@ class Law(models.Model):
 
 class Voter(models.Model):
 	user 			= models.ForeignKey(User)
-	candidate 		= models.ForeignKey(Candidate)
+	#candidate 		= models.ForeignKey(Candidate)
 	law 			= models.ForeignKey(Law)	
-	timestamp		= models.DateTimeField(auto_now_add=True)
+	#timestamp		= models.DateTimeField(auto_now_add=True)
