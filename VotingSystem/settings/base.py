@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'Position',
     'PartyList',
     'Candidate',
-    'Vote',
 ]
 
 LOGIN_URL = '/login'
