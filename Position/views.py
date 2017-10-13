@@ -5,6 +5,7 @@ from django.views.generic import (
 	DetailView, 
 	CreateView, 
 	UpdateView,
+	View,
 	)
 
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -31,6 +32,14 @@ class PositionDetailView(LoginRequiredMixin, DetailView):
 			'candidate': candidate,
 		}
 		return render(request,"Position/detail-update",context)
+
+class PresidentListView(ListView):
+	queryset = Candidate.objects.filter(position__position_name__iexact = 'President')
+	template_name = 'Position/president-list.html'
+
+class VicePresidentListView(ListView):
+ 	queryset = Candidate.objects.filter(position__position_name__iexact = 'Vice president')
+ 	template_name = 'Position/vicepresident-list.html'
 
 class PositionCreateView(LoginRequiredMixin, CreateView):
 	form_class = PositionDetailCreateForm

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block head_title %}Presidents | {{ block.super }}{% endblock head_title %}
+{% block content%}
+
+<h4>List of Presidents<small></small></h4>
+
+{% for obj in object_list %}
+	<hr/>
+	<h5>{{ obj.position }}</h5>
+	<h5>{{ obj.student }}</h5>
+	<h5>{{ obj.party_list }}</h5>
+	
+{% endfor %}
+
+{% endblock content%}

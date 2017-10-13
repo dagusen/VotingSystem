@@ -5,9 +5,13 @@ from .views import (
     PositionDetailView,
     PositionCreateView,
     PositionUpdateView,
+    PresidentListView,
+    VicePresidentListView,
 )
 
 urlpatterns = [
+	url(r'^President/$', PresidentListView.as_view(), name='list'),
+	url(r'^Vice-president/$', VicePresidentListView.as_view(), name='list'),
     url(r'^$', PositionListView.as_view(), name='list'),
     url(r'^create/$', PositionCreateView.as_view(), name='create'),
     # # slug
