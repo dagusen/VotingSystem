@@ -12,6 +12,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import PartyList
 
+class VotePartyListView(ListView):
+	template_name = 'Vote/Votepartylist.html'
+	def get_queryset(self):
+		return PartyList.objects.all()
+
 class PartyListListView(LoginRequiredMixin, ListView):
 	def get_queryset(self):
 		return PartyList.objects.filter(user=self.request.user)

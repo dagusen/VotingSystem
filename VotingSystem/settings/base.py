@@ -43,10 +43,11 @@ INSTALLED_APPS = [
     'Position',
     'PartyList',
     'Candidate',
+    'Vote',
 ]
 
 LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = '/candidate'
+LOGIN_REDIRECT_URL = '/vote'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
