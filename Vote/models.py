@@ -4,6 +4,8 @@ from django.db import models
 
 from django.conf import settings
 
+from Candidate.models import Candidate
+
 User = settings.AUTH_USER_MODEL
 
 class Law(models.Model):
@@ -12,6 +14,6 @@ class Law(models.Model):
 
 class Voter(models.Model):
 	user 			= models.ForeignKey(User)
-	law 			= models.ForeignKey(Law)
-
-	
+	candidate 		= models.ForeignKey(Candidate)
+	law 			= models.ForeignKey(Law)	
+	timestamp		= models.DateTimeField(auto_now_add=True)
