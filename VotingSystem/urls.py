@@ -36,7 +36,6 @@ urlpatterns = [
     url(r'^candidate/', include('Candidate.urls', namespace='candidate')),
     url(r'^position/', include('Position.urls', namespace='position')),
     url(r'^partylist/', include('PartyList.urls', namespace='partylist')),
-    url(r'^vote/', include('Vote.urls', namespace='vote')),
 
     # login
     url(r'^login/$', LoginView.as_view(), name='login'),
