@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block head_title %}Party List | {{ block.super }}{% endblock head_title %}
+{% block content%}
+
+
+{% for choice in object.candidate_set.all %}
+	<li>
+	{{ choice.candidate_text }} -- {{ choice.votes }} vote {{ choice.votes | pluralize }} </li>
+    </li>
+{% endfor %}
+
+{% endblock content%}

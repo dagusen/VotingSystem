@@ -47,3 +47,9 @@ class CandidateUpdateView(LoginRequiredMixin, UpdateView):
 
 	def get_queryset(self):
 		return Candidate.objects.filter(user=self.request.user)
+
+def votes_counter(request, photo_id):
+    candidate = Candidate.objects.get(votes=votes)
+    candidate.vote += 1
+    candidate.save()
+    # return HttpResponse('your-photo-list-view')

@@ -27,6 +27,11 @@ class Candidate(models.Model):
 	party_list			= models.ForeignKey('PartyList.PartyList', on_delete=models.CASCADE, related_name='Candidate', null='True', blank=True)
 	position 			= models.ForeignKey('Position.Position', on_delete=models.CASCADE, related_name='Candidate', null='True', blank=True)
 
+	votes = models.IntegerField(default=0)
+
+	# def votes_counter(self):
+ #         if self.student:
+ #             self.votes += 1
 	
 	def get_data(self):
 	 	return self.student
